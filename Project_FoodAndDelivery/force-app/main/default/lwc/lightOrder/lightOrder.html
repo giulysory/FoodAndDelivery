@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Insert new order" icon-name="standard:orders">
+        <div class="slds-p-around_x-small">
+            <lightning-input type = "Account" label="Account" value={searchKey} onchange={handleSearchKey}></lightning-input>
+            <lightning-input type ="Date" label="Date" value={rec.Date} onchange={handleDateChange}></lightning-input>
+            <lightning-combobox label ="Status" value={rec.Status} options={options} onchange={handleStatusChange}></lightning-combobox>
+            <lightning-input label ="Ship to" value={rec.Shipto} onchange={handleShiptoChange}></lightning-input><br/>
+            <lightning-button label="Confirm" onclick={handleClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
