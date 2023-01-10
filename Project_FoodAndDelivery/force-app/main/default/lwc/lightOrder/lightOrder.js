@@ -50,41 +50,37 @@ export default class LightOrder extends LightningElement {
         console.log(this.rec.Shipto);
     }
 
-    handleClick() {
-        newOrder({ ord : this.rec })
-            .then(result => {
-                this.message = result;
-                this.error = undefined;
-                if(this.message !== undefined) {
-                    this.rec.Accid = '';
-                    this.rec.Date = '';
-                    this.rec.Status = '';
-                    this.rec.Shipto = '';
-                    this.dispatchEvent(
-                        new ShowToastEvent({
-                            title: 'Success',
-                            message: 'Order created Succesfully',
-                            variant: 'success',
-                        }),
-                    );
-                }
-                
-                console.log(JSON.stringify(result));
-                console.log("result", this.message);
-            })
-            .catch(error => {
-                this.message = undefined;
-                this.error = error;
+    handleClick(){
+        newOrder({input : "In preparation"})
+        .then(result => {
+            this.message = result;
+            this.error = undefined;
+            if(this.message !== undefined) {
                 this.dispatchEvent(
                     new ShowToastEvent({
-                        title: 'Failed to Insert order',
-                        message: error.body.message,
-                        variant: 'error',
+                        title: 'Success',
+                        message: 'Order created Succesfully',
+                        variant: 'success',
                     }),
                 );
-                console.log("error", JSON.stringify(this.error));
-            });
-    }
+            }
+            
+            console.log(JSON.stringify(result));
+            console.log("result", this.message);
+        })
+        .catch(error => {
+            this.message = undefined;
+            this.error = error;
+            this.dispatchEvent(
+                new ShowToastEvent({
+                    title: 'Failed to Insert order',
+                    message: error.body.message,
+                    variant: 'error',
+                }),
+            );
+            console.log("error", JSON.stringify(this.error));
+        });
+    };
 
 
 }
