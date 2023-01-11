@@ -1,5 +1,4 @@
 import { LightningElement, track } from 'lwc';
-
 import ORDER_OBJECT from '@salesforce/schema/Order';
 import ACCOUNTID_FIELD from '@salesforce/schema/Order.AccountId';
 import DATE_FIELD from '@salesforce/schema/Order.EffectiveDate';
@@ -10,8 +9,7 @@ import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class LightOrder extends LightningElement {
 
-    @track accid = ACCOUNTID_FIELD;
-    @track date = DATE_FIELD;
+    /*@track accid = ACCOUNTID_FIELD;
     @track status = STATUS_FIELD;
     @track shipto = SHIPTO_FIELD;
 
@@ -34,11 +32,6 @@ export default class LightOrder extends LightningElement {
         this.rec.Accid = event.target.value;
         console.log(this.rec.Accid);
     }
-
-    handleDateChange(event) {
-        this.rec.Date = event.target.value;
-        console.log(this.rec.Date);
-    }
     
     handleStatusChange(event) {
         this.rec.Status = event.target.value;
@@ -48,10 +41,19 @@ export default class LightOrder extends LightningElement {
     handleShiptoChange(event) {
         this.rec.Shipto = event.target.value;
         console.log(this.rec.Shipto);
+    @track date = DATE_FIELD;
+
+    rec = {
+        Date : this.date,  
     }
+    handleDateChange(event) {
+        this.rec.Date = event.target.value;
+        console.log(this.rec.Date);
+    }
+    */
 
     handleClick(){
-        newOrder({input : "In preparation"})
+        newOrder({input : 'Draft'})
         .then(result => {
             this.message = result;
             this.error = undefined;
@@ -81,6 +83,4 @@ export default class LightOrder extends LightningElement {
             console.log("error", JSON.stringify(this.error));
         });
     };
-
-
 }
