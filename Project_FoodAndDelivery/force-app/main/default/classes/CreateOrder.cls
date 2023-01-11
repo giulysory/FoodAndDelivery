@@ -1,7 +1,7 @@
 public with sharing class CreateOrder {
 
     @AuraEnabled
-    public static Order newOrder(String input){
+    public static void newOrder(String input){
         try {
             List<Account> la = [select Id, Name from Account WHERE Name='Edge Communications'];
             List<Contact> cnt = [select Id, Account.Name, Name from Contact WHERE Account.Name='Edge Communications'];
