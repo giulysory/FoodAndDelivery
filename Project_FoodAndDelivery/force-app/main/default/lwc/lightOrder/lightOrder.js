@@ -1,59 +1,33 @@
 import { LightningElement, track } from 'lwc';
 import ORDER_OBJECT from '@salesforce/schema/Order';
-import ACCOUNTID_FIELD from '@salesforce/schema/Order.AccountId';
-import DATE_FIELD from '@salesforce/schema/Order.EffectiveDate';
-import STATUS_FIELD from '@salesforce/schema/Order.Status';
-import SHIPTO_FIELD from '@salesforce/schema/Order.ShipToContactId';
 import newOrder from '@salesforce/apex/CreateOrder.newOrder';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class LightOrder extends LightningElement {
-
-    /*@track accid = ACCOUNTID_FIELD;
-    @track status = STATUS_FIELD;
-    @track shipto = SHIPTO_FIELD;
-
-
-    status;
-    options = [
-        {value: "Confirmed", label: "Confirmed"},
-        {value: "Delivered", label: "Delivered"},
-        {value: "In preparation", label: "In preparation",}
-    ]
-
-    rec = {
-        Accid : this.accid,
-        Date : this.date,   
-        Status : this.status,
-        Shipto : this.shipto,
-    }
-
-    handleAccountChange(event){
-        this.rec.Accid = event.target.value;
-        console.log(this.rec.Accid);
-    }
     
-    handleStatusChange(event) {
-        this.rec.Status = event.target.value;
-        console.log(this.rec.Status);
+    @track AccountId;
+    @track ShipToContactId;
+    @track Status;
+    @track EffectiveDate;
+
+    handleAccountId(event){
+        this.AccountId=event.target.value;
     }
 
-    handleShiptoChange(event) {
-        this.rec.Shipto = event.target.value;
-        console.log(this.rec.Shipto);
-    @track date = DATE_FIELD;
+    handleShipTo(event){
+        this.ShipToContactId=event.target.value;
+    }
 
-    rec = {
-        Date : this.date,  
+    handleStatus(event){
+        this.Status=event.target.value;
     }
-    handleDateChange(event) {
-        this.rec.Date = event.target.value;
-        console.log(this.rec.Date);
+
+    handleDate(event){
+        this.EffectiveDate=event.target.value;
     }
-    */
 
     handleClick(){
-        newOrder({input : 'Draft'})
+        newOrder({acct : this.AccountId, ship : this.ShipToContactId, state : this.Status, day : this.EffectiveDate})
         .then(result => {
             this.message = result;
             this.error = undefined;
