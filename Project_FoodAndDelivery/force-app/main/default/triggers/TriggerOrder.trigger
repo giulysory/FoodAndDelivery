@@ -1,5 +1,9 @@
 trigger TriggerOrder on Order (after insert) {
+    List<Order> ordConfermati = new List<Order>();
     for (Order a : Trigger.new){
-        OrderCallout.newOrderCallout(JSON.serialize(a));
+        if(a.Status =='Confirmed'){
+            ordConfermati.add(a);
+        }
     }
+    OrderCallout.newOrderCallout(JSON.serialize(ordConfermati));
 }
