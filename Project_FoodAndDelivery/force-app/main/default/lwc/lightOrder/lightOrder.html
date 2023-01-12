@@ -1,11 +1,13 @@
 <template>
-    <lightning-card title="Insert new order" icon-name="standard:orders">
+    <lightning-card title="Create Order" icon-name="custom:custom15">
         <div class="slds-p-around_x-small">
-            <lightning-input type = "Account" label="Account" value={searchKey} onchange={handleSearchKey}></lightning-input>
-            <lightning-input type ="Date" label="Date" value={rec.Date} onchange={handleDateChange}></lightning-input>
-            <lightning-combobox label ="Status" value={rec.Status} options={options} onchange={handleStatusChange}></lightning-combobox>
-            <lightning-input label ="Ship to" value={rec.Shipto} onchange={handleShiptoChange}></lightning-input><br/>
-            <lightning-button label="Confirm" onclick={handleClick}></lightning-button>
-        </div>
+            <lightning-record-edit-form object-api-name="Order">
+                <lightning-input-field field-name="AccountId" onchange={handleAccountId}></lightning-input-field>
+                <lightning-input-field field-name="ShipToContactId" onchange={handleShipTo}></lightning-input-field>
+                <lightning-input-field field-name="Status" onchange={handleStatus}></lightning-input-field>
+                <lightning-input-field field-name="EffectiveDate" onchange={handleDate}></lightning-input-field>
+            </lightning-record-edit-form>
+                <lightning-button label="Submit" onclick={handleClick}></lightning-button>
+        </div>    
     </lightning-card>
 </template>
