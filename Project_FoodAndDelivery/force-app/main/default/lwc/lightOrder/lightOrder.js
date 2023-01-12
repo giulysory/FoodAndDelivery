@@ -35,7 +35,7 @@ export default class LightOrder extends LightningElement {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
-                        message: 'Order created Succesfully',
+                        message: 'Order created succesfully!',
                         variant: 'success',
                     }),
                 );
@@ -49,7 +49,7 @@ export default class LightOrder extends LightningElement {
             this.error = error;
             this.dispatchEvent(
                 new ShowToastEvent({
-                    title: 'Failed to Insert order',
+                    title: 'Failed to insert order!',
                     message: error.body.message,
                     variant: 'error',
                 }),
