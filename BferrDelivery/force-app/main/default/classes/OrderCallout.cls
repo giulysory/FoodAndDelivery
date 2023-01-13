@@ -14,9 +14,9 @@ public with sharing class OrderCallout {
                 StrutturaOrdine so = (StrutturaOrdine)JSON.deserialize(response.getBody(),StrutturaOrdine.class);
                 System.debug('Struttura deserializzata' + so.externalId);
                 //query su externalId e update status
-                List<Order> OrdineConfermato = [SELECT Id, Status, ExternalId__C FROM Order WHERE ExternalId__c IN : so.externalId];
+                List<Order> OrdineConfermato = [SELECT Id, Status, ExternalId__C FROM Order WHERE ExternalId__c LIKE : so.externalId];
                 for(Order con: OrdineConfermato){
-                con.Status ='In preparation';
+                con.Status = 'Ordine in preparazione';
                 update con;
              }
             } else {

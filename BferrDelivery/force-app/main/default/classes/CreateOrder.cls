@@ -6,6 +6,7 @@ public with sharing class CreateOrder {
             ord.AccountId = acct;
             ord.ShipToContactId = ship;
             ord.Status = state;
+            ord.ExternalId__c= '5243' ;
             ord.EffectiveDate = day;
             insert ord;
         } catch (Exception e) {
