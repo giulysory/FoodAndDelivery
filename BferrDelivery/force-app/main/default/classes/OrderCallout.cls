@@ -31,6 +31,6 @@ public with sharing class OrderCallout {
         public String message;
         @AuraEnabled
         public String externalId;
-    }    
-}   
-
+    }
+    
+}
