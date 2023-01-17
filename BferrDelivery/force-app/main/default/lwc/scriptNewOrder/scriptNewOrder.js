@@ -1,5 +1,4 @@
 import { LightningElement, track } from 'lwc';
-import ORDER_OBJECT from '@salesforce/schema/Order';
 import newOrder from '@salesforce/apex/CreateOrder.newOrder';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
@@ -9,6 +8,7 @@ export default class LightOrder extends LightningElement {
     @track ShipToContactId;
     @track Status;
     @track EffectiveDate;
+    @track Product;
 
     handleAccountId(event){
         this.AccountId=event.target.value;
@@ -25,9 +25,13 @@ export default class LightOrder extends LightningElement {
     handleDate(event){
         this.EffectiveDate=event.target.value;
     }
+    handleProduct(event){
+        this.Product=event.target.value;
+    }
+
 
     handleClick(){
-        newOrder({acct : this.AccountId, ship : this.ShipToContactId, state : this.Status, day : this.EffectiveDate})
+        newOrder({acct : this.AccountId, ship : this.ShipToContactId, state : this.Status, day : this.EffectiveDate, Prod :this.Product})
         .then(result => {
             this.message = result;
             this.error = undefined;
